@@ -91,13 +91,13 @@ while(1):
                             continue
                         w = G[last_element][element]["weight"]
                         if w >= highest_impact:
-                        	if w > highest_impact:
-                        		highest_impact = [] #reset if strictly better
+                            if w > highest_impact:
+                                highest_impact = [] #reset if strictly better
                             highest_impact = w
                             impact_edge.add((last_element,element))
                         if i >= furthest_back:
-                        	if i > furthest_back:
-                        		furthest_edge = [] #reset if strictly better
+                            if i > furthest_back:
+                                furthest_edge = [] #reset if strictly better
                             furthest_back = i
                             furthest_edge.add((last_element,element))
                 intersect = furthest_edge.intersection(impact_edge)
