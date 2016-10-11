@@ -3,7 +3,6 @@ import socket
 import networkx as nx
 import random
 
-
 HOST = 'localhost'    # The remote host
 PORT = 5000       # The same port as used by the server
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -93,6 +92,10 @@ while(1):
             G[y][x]['weight'] = int(cost)
     else:
         first_move = False
+    if target in G[current_location].keys():
+        #if we can take one move to get to the target, take it.
+        s.sendall('{}'.format(target))
+        break
     paths = [x for x in nx.all_shortest_paths(G,current_location,target,weight='weight')]
     
     # if more than one shortest path to choose
@@ -142,4 +145,5 @@ while(1):
     current_location = play_move
     print "Selecting " + play_move
     s.sendall('{}'.format(play_move))
+    print "for some reason if I delete this print statement the code doesn't work..."
 s.close()
